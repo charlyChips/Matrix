@@ -1,5 +1,7 @@
 package charlychips.com.matrixled
 
+import android.app.ActionBar
+import android.app.Dialog
 import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -15,8 +17,12 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewTreeObserver
+import android.widget.Button
 import android.widget.ImageView
+import charlychips.com.matrixled.Models.Dibujo
+import charlychips.com.matrixled.Utils.Sql
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.dialog_save_dibujo.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,14 +43,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
+        bt_ledToggle.isChecked = true
         setClicks()
     }
 
     override fun onResume() {
         super.onResume()
-        if(firstDrawed){
-            drawFromHexString("00000000000360000007F0000007F0000003E0000001C0000000800000000000")
-        }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -160,6 +164,44 @@ class MainActivity : AppCompatActivity() {
             val bin = convertToBinString(hex)
             tv_debug.text = "${hex} \r\n${bin}"
             Log.d("Hex",hex)
+
+
+            val d = Dialog(this)
+            d.setContentView(R.layout.dialog_save_dibujo)
+            d.window.setLayout(-1,-1)
+            val bt = d.findViewById<Button>(R.id.bt_dialogSaveDraw)
+            bt.setOnClickListener({
+                val et = d.et_dialogSaveDraw
+                if(et.text.isNotEmpty()){
+                    val sql = Sql(this)
+                    val draw = Dibujo(et.text.toString(),hex,Dibujo.DIBUJO)
+                    sql.insert(draw)
+
+                }
+                d.dismiss()
+            })
+            d.show()
+
+        })
+        bt_load.setOnClickListener({
+            val sql = Sql(this)
+            val dibujos = sql.getDibujos(Dibujo.DIBUJO)
+
+            val b = AlertDialog.Builder(this)
+            b.setTitle("Selecciona un Dibujo")
+
+            var items = Array<CharSequence>(dibujos.size,{init->""})
+            for(i in 0..dibujos.size-1){
+                items[i] = dibujos[i].nombre!!
+            }
+            b.setItems(items, DialogInterface.OnClickListener({
+                dialog:DialogInterface, which:Int ->
+                drawFromHexString(dibujos[which].descripcion!!)
+                dialog.dismiss()
+
+            }))
+            b.create().show()
+
         })
     }
 

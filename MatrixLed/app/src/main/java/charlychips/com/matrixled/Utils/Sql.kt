@@ -3,6 +3,7 @@ package charlychips.com.matrixled.Utils
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import charlychips.com.matrixled.Models.Dibujo
 
 /**
  * Created by NubekDev on 27/07/18.
@@ -20,5 +21,21 @@ import android.database.sqlite.SQLiteOpenHelper
     }
 
 
+    fun insert(dibujo: Dibujo){
+        val db = writableDatabase
+        db.execSQL("INSERT INTO dibujos (nombre,descripcion,tipo) VALUES('${dibujo.nombre!!}','${dibujo.descripcion!!}','${dibujo.tipo!!}')")
+        db.close()
+    }
+
+    fun getDibujos(tipo:Int):ArrayList<Dibujo>{
+        val db = readableDatabase
+        val c = db.rawQuery("SELECT * FROM dibujos WHERE tipo = ${tipo}",null)
+        var dibujos = ArrayList<Dibujo>()
+        while(c.moveToNext()){
+            dibujos.add(Dibujo(c.getInt(0),c.getString(1),c.getString(2),c.getInt(3)))
+        }
+        db.close()
+        return dibujos
+    }
 
 }
