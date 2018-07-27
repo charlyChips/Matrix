@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorCanvasBAckground">#535353</color>
+    <color name="colorLedOn">#ff0000</color>
+    <color name="colorLedOff">#1a1a1a</color>
 </resources>
