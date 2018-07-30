@@ -6,67 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:padding="8dp"
-    android:background="@color/colorCanvasBAckground"
     android:weightSum="100"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:orientation="horizontal"
+        android:gravity="right">
+
+
+        <ImageButton
+            android:id="@+id/bt_limpiar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@mipmap/ic_delete"
+            android:elevation="5dp"
+            android:textAllCaps="false"
+            android:layout_marginRight="30dp"/>
+
+        <ImageButton
+            android:id="@+id/bt_load"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@mipmap/ic_open"/>
+        <ImageButton
+            android:id="@+id/bt_save"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@mipmap/ic_save"/>
+
+
+
+    </LinearLayout>
     <ImageView
         android:id="@+id/frame_canvas"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="50"></ImageView>
+        android:layout_weight="55"
+        android:layout_margin="3dp"></ImageView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="50"
-        android:orientation="vertical">
+        android:layout_weight="15"
+        android:orientation="horizontal">
+        <ToggleButton
+            android:id="@+id/bt_ledToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_led"
+            android:drawableLeft="@mipmap/ic_led"
+            android:textOff="off"
+            android:textOn="on"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:padding="5dp"
+            android:layout_margin="2dp"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ToggleButton
-                android:id="@+id/bt_ledToggle"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="right">
+            <ImageButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/selector_led"
-                android:textOff="off"
-                android:textOn="on"
-                android:textColor="#fff"
-                android:textAllCaps="false"/>
-
-            <Button
-                android:id="@+id/bt_limpiar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Limpiar"
-                android:textAllCaps="false"/>
-            <Button
-                android:id="@+id/bt_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Save"/>
-            <Button
-                android:id="@+id/bt_load"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Load"/>
+                android:layout_height="match_parent"
+                android:background="@mipmap/ic_send"
+                android:layout_gravity="right"/>
         </LinearLayout>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:orientation="vertical">
             <TextView
                 android:id="@+id/tv_debug"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#000"
-                android:textColor="#00ff00"
+                android:layout_height="match_parent"
+                android:textColor="#76ff03"
                 android:textStyle="bold"
-                android:text="hola"/>
-        </LinearLayout>
-        </ScrollView>
-
+                android:text="---"
+                android:gravity="center"/>
 
     </LinearLayout>
 

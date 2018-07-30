@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.service.autofill.CharSequenceTransformation
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AlertDialog
+import android.text.Layout
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.MotionEvent
@@ -19,7 +20,9 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import charlychips.com.matrixled.Models.Dibujo
+import charlychips.com.matrixled.Utils.Custom
 import charlychips.com.matrixled.Utils.Sql
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_save_dibujo.*
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         bt_ledToggle.isChecked = true
         setClicks()
+        tv_debug.setTypeface(Custom.getTypefaceMatrix(this))
     }
 
     override fun onResume() {
@@ -73,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             val pincelOff = getPincelLedOff()
 
 
-            canvas!!.drawColor(getMyColor(R.color.colorCanvasBAckground))
+            //canvas!!.drawColor(getMyColor(R.color.colorCanvasBAckground))
 
             //===========================================================
             //============ Dibujando LEDS ===============================
@@ -136,6 +140,7 @@ class MainActivity : AppCompatActivity() {
                 for(dot in dots!!){
                     dot.on = false
                     dot.drawInCanvas(canvas!!,getPincelLedOff(),frame_canvas)
+                    tv_debug.text = "Nuevo Dibujo"
                 }
                 dialog.dismiss()
 
@@ -162,23 +167,26 @@ class MainActivity : AppCompatActivity() {
 
             val hex = convertToHexString(binario.toString())
             val bin = convertToBinString(hex)
-            tv_debug.text = "${hex} \r\n${bin}"
             Log.d("Hex",hex)
 
 
             val d = Dialog(this)
             d.setContentView(R.layout.dialog_save_dibujo)
-            d.window.setLayout(-1,-1)
+            d.window.setLayout(-1,-2)
             val bt = d.findViewById<Button>(R.id.bt_dialogSaveDraw)
             bt.setOnClickListener({
                 val et = d.et_dialogSaveDraw
                 if(et.text.isNotEmpty()){
                     val sql = Sql(this)
                     val draw = Dibujo(et.text.toString(),hex,Dibujo.DIBUJO)
-                    sql.insert(draw)
+                    if (sql.insert(draw)) {
+                        tv_debug.text = "Guardado Correctamente"
+                        d.dismiss()
+                    }else{
+                        Toast.makeText(this,"Ese nombre ya existe. Pruebe con otro, por favor.",Toast.LENGTH_SHORT).show()
+                    }
 
                 }
-                d.dismiss()
             })
             d.show()
 
@@ -198,6 +206,7 @@ class MainActivity : AppCompatActivity() {
                 dialog:DialogInterface, which:Int ->
                 drawFromHexString(dibujos[which].descripcion!!)
                 dialog.dismiss()
+                tv_debug.text = "Cargado Correctamente -${dibujos[which].nombre!!}-"
 
             }))
             b.create().show()

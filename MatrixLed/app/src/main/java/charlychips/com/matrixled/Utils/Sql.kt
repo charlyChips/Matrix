@@ -21,10 +21,18 @@ import charlychips.com.matrixled.Models.Dibujo
     }
 
 
-    fun insert(dibujo: Dibujo){
+    fun insert(dibujo: Dibujo):Boolean{
         val db = writableDatabase
+
+        val cursor = db.rawQuery("SELECT id FROM dibujos WHERE nombre = '${dibujo.nombre}'",null)
+        if(cursor.count>0){
+            db.close()
+            return false
+        }
+
         db.execSQL("INSERT INTO dibujos (nombre,descripcion,tipo) VALUES('${dibujo.nombre!!}','${dibujo.descripcion!!}','${dibujo.tipo!!}')")
         db.close()
+        return true
     }
 
     fun getDibujos(tipo:Int):ArrayList<Dibujo>{

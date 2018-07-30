@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#40c4ff</color>
 
-    <color name="colorCanvasBAckground">#535353</color>
+    <color name="colorCanvasBAckground">#000</color>
     <color name="colorLedOn">#ff0000</color>
-    <color name="colorLedOff">#1a1a1a</color>
+    <color name="colorLedOff">#535353</color>
+    <color name="colorBackground">#000</color>
+
+    <color name="color_delete">#607d8b</color>
+    <color name="color_deletFocus">#607d8b</color>
+    <color name="color_open">#ffab00</color>
+    <color name="color_openFocus">#ffab00</color>
+    <color name="color_save">#42a5f5</color>
+    <color name="color_saveFocus">#42a5f5</color>
+
 </resources>
