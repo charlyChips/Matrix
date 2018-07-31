@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Controllers.MainActivity"
     android:padding="8dp"
     android:weightSum="100"
     android:orientation="vertical"
@@ -84,7 +84,7 @@
                 android:id="@+id/tv_debug"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="#76ff03"
+                android:textColor="@color/color_verdeTerminal"
                 android:textStyle="bold"
                 android:text="---"
                 android:gravity="center"/>

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#40c4ff</color>
+    <color name="colorAccent">#3cd9f9</color>
 
     <color name="colorCanvasBAckground">#000</color>
     <color name="colorLedOn">#ff0000</color>
@@ -15,5 +15,6 @@
     <color name="color_openFocus">#ffab00</color>
     <color name="color_save">#42a5f5</color>
     <color name="color_saveFocus">#42a5f5</color>
+    <color name="color_verdeTerminal">#76ff03</color>
 
 </resources>

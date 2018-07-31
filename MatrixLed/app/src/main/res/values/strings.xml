@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MatrixLed</string>
+    <string name="title_activity_first">FirstActivity</string>
 </resources>

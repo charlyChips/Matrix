@@ -7,6 +7,7 @@ class Dibujo{
     companion object {
         val TEXTO = 0
         val DIBUJO = 1
+        val EMOJI = 2
     }
 
     var id:Int? = null

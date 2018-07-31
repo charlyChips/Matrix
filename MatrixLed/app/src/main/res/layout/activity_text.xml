@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="charlychips.com.matrixled.Controllers.TextActivity"
+    android:padding="8dp"
+    android:background="@color/colorCanvasBAckground">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="50"
+        app:counterEnabled="true"
+        app:counterMaxLength="160"
+        app:counterOverflowTextAppearance="@color/colorAccent"
+        app:counterTextAppearance="@color/colorAccent">
+        <EditText
+            android:id="@+id/et_msj"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Mensaje"
+            android:gravity="start"
+            android:textColor="@color/color_verdeTerminal"
+            android:scrollIndicators="bottom"
+            android:textColorHint="#fff"
+            android:inputType="textShortMessage"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/bt_msj_emoji"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@mipmap/ic_emoji"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+            <ImageButton
+                android:id="@+id/bt_text_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_open"/>
+            <ImageButton
+                android:id="@+id/bt_text_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_save"
+                android:layout_marginRight="24sp"/>
+            <ImageButton
+                android:id="@+id/bt_text_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_send"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

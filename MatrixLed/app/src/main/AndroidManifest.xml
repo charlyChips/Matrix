@@ -9,14 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".Controllers.MainActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".Controllers.EmojiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Controllers.FirstActivity"
+            android:label="@string/title_activity_first"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Controllers.TextActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"></activity>
     </application>
 
 </manifest>
